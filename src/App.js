@@ -8,22 +8,21 @@ class App extends React.Component {
     
     renderAstroPeople = () => {
         if (this.state.peopleInSpace) {
-            let spacePeopleNames = this.state.peopleInSpace.map((person) => <div>{person.name}</div>)
+            let spacePeopleNames = this.state.peopleInSpace.map((person) => <p>{person.name}</p>)
             return spacePeopleNames
         }
     }
     
-    render() {
-        console.log(this.state.peopleInSpace)
-        return (
-            <div>{this.renderAstroPeople()}</div>
-            )
-        }
-        
     componentDidMount() {
         fetch("http://api.open-notify.org/astros.json")
         .then(response => response.json())
         .then(astroData => this.setState({peopleInSpace: astroData.people}))
+    }
+
+    render() {
+        return (
+            <div>{this.renderAstroPeople()}</div>
+            )
     }
 }
 
